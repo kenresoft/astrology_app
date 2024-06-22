@@ -1,0 +1,13 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Power" clip-path="url(#clip0_54_1742)">
+        <path id="Vector" d="M11.9993 4.50027V11.6253" stroke="#E1353C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path id="Vector_2"
+            d="M16.5002 5.08431C17.9908 6.05441 19.1279 7.4802 19.7422 9.14919C20.3565 10.8182 20.4151 12.641 19.9091 14.3459C19.4031 16.0509 18.3598 17.5467 16.9345 18.6104C15.5093 19.6742 13.7784 20.2489 12 20.2489C10.2215 20.2489 8.49071 19.6742 7.06546 18.6104C5.64021 17.5467 4.59685 16.0509 4.0909 14.3459C3.58495 12.6409 3.64349 10.8181 4.2578 9.14915C4.87211 7.48017 6.00929 6.05438 7.49986 5.08429"
+            stroke="#E1353C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <defs>
+        <clipPath id="clip0_54_1742">
+            <rect width="24" height="24" fill="white" />
+        </clipPath>
+    </defs>
+</svg>
