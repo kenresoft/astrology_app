@@ -40,11 +40,6 @@ dependencies:
   flutter_svg: ^2.0.10+1
   country_code_picker: ^3.0.0
 
-#  country_icons: ^3.0.0
-#  iso_countries: ^2.2.0
-
-#  country_flags: ^3.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
