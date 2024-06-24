@@ -20,3 +20,13 @@ extension PngExtension on String {
     return Image.asset('assets/img/$this.png');
   }
 }
+
+Widget jpg(String name) {
+  return Image.asset('assets/img/$name.png');
+}
+
+extension JpgExtension on String {
+  Image get jpg {
+    return Image.asset('assets/img/$this.jpg');
+  }
+}
