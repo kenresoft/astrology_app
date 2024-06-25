@@ -1,4 +1,3 @@
-import 'package:astrology_app/utils/extensions.dart';
 import 'package:astrology_app/utils/utils.dart';
 import 'package:astrology_app/view/profile/profile_form.dart';
 import 'package:astrology_app/view/profile/profile_image.dart';
