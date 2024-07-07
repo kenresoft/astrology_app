@@ -161,14 +161,14 @@ class InfoCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     'message'.svg,
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
                             text: '60k',
                             style: TextStyle(
-                              color: Color(0xFFC6C6C6),
-                              fontSize: 16,
+                              color: const Color(0xFFC6C6C6),
+                              fontSize: 14.h,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
                             ),
@@ -176,8 +176,8 @@ class InfoCard extends StatelessWidget {
                           TextSpan(
                             text: ' mins',
                             style: TextStyle(
-                              color: Color(0xFFC6C6C6),
-                              fontSize: 16,
+                              color: const Color(0xFFC6C6C6),
+                              fontSize: 14.h,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
                             ),
@@ -207,14 +207,14 @@ class InfoCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     'fluent_call'.svg,
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
                             text: '60k',
                             style: TextStyle(
-                              color: Color(0xFFC6C6C6),
-                              fontSize: 16,
+                              color: const Color(0xFFC6C6C6),
+                              fontSize: 14.h,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
                             ),
@@ -222,8 +222,8 @@ class InfoCard extends StatelessWidget {
                           TextSpan(
                             text: ' mins',
                             style: TextStyle(
-                              color: Color(0xFFC6C6C6),
-                              fontSize: 16,
+                              color: const Color(0xFFC6C6C6),
+                              fontSize: 14.h,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
                             ),
