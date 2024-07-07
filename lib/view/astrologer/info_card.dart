@@ -240,20 +240,21 @@ class InfoCard extends StatelessWidget {
                   decoration: ShapeDecoration(
                     color: const Color(0xFFFEF390),
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1, color: Color(0xFFFFB700)),
-                      borderRadius: BorderRadius.circular(7),
+                      side:
+                          const BorderSide(width: 1, color: Color(0xFFFFB700)),
+                      borderRadius: BorderRadius.circular(7).r,
                     ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       'video'.svg,
-                      const Text(
+                      Text(
                         'Watch Intro',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 14,
+                          fontSize: 12.h,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
                           height: 0,
