@@ -18,7 +18,8 @@ class MobileIntro extends StatefulWidget {
 }
 
 class _MobileIntroState extends State<MobileIntro> {
-  final TextEditingController _countryController = TextEditingController(text: country);
+  final TextEditingController _countryController =
+      TextEditingController(text: country);
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +35,15 @@ class _MobileIntroState extends State<MobileIntro> {
                 Stack(
                   children: [
                     CustomPaint(
-                      size: Size(1.sw, 5.h), // Define the size of the custom painter
+                      size: Size(
+                          1.sw, 5.h), // Define the size of the custom painter
                       painter: IntroClipCircle(),
                     ),
                     Container(
                       alignment: Alignment.center,
                       child: Container(
-                        margin: EdgeInsets.only(top: 78.h, bottom: 65.h, left: 20.w, right: 20.w),
+                        margin: EdgeInsets.only(
+                            top: 78.h, bottom: 65.h, left: 20.w, right: 20.w),
                         child: SvgPicture.asset(
                           'assets/svg/mobile_login.svg',
                           height: 235.h,
@@ -68,7 +71,8 @@ class _MobileIntroState extends State<MobileIntro> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 30.w, top: 20.h, bottom: 19.h),
+                          padding: EdgeInsets.only(
+                              left: 30.w, top: 20.h, bottom: 19.h),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -157,7 +161,7 @@ class _MobileIntroState extends State<MobileIntro> {
                           child: Row(
                             children: [
                               SizedBox(
-                                width: 135.w,
+                                width: 137.w,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -176,7 +180,8 @@ class _MobileIntroState extends State<MobileIntro> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                         boxDecoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(3).r,
+                                          borderRadius:
+                                              BorderRadius.circular(3).r,
                                         ),
                                         textStyle: TextStyle(
                                           color: const Color(0xFF111827),
@@ -195,7 +200,10 @@ class _MobileIntroState extends State<MobileIntro> {
                                     Container(
                                       width: 2,
                                       color: const Color(0xffBABABA),
-                                      margin: const EdgeInsets.symmetric(vertical: 8).h.copyWith(left: 5.w, right: 15.w),
+                                      margin: const EdgeInsets.symmetric(
+                                              vertical: 8)
+                                          .h
+                                          .copyWith(left: 5.w, right: 15.w),
                                     ),
                                   ],
                                 ),
@@ -238,7 +246,8 @@ class _MobileIntroState extends State<MobileIntro> {
                           children: [
                             Flexible(
                               child: Container(
-                                margin: EdgeInsets.only(left: 30.w, right: 12.w),
+                                margin:
+                                    EdgeInsets.only(left: 30.w, right: 12.w),
                                 decoration: ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
@@ -260,7 +269,8 @@ class _MobileIntroState extends State<MobileIntro> {
                             ),
                             Flexible(
                               child: Container(
-                                margin: EdgeInsets.only(left: 12.w, right: 30.w),
+                                margin:
+                                    EdgeInsets.only(left: 12.w, right: 30.w),
                                 decoration: ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
@@ -284,7 +294,8 @@ class _MobileIntroState extends State<MobileIntro> {
                           child: Container(
                             width: 362.w,
                             height: 44.h,
-                            margin: EdgeInsets.symmetric(horizontal: 30.w).copyWith(top: 20.h, bottom: 45.h),
+                            margin: EdgeInsets.symmetric(horizontal: 30.w)
+                                .copyWith(top: 20.h, bottom: 45.h),
                             padding: EdgeInsets.symmetric(horizontal: 16.w),
                             decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
@@ -297,7 +308,8 @@ class _MobileIntroState extends State<MobileIntro> {
                             ),
                             child: Row(
                               children: [
-                                SvgPicture.asset('assets/svg/dashicons_email.svg'),
+                                SvgPicture.asset(
+                                    'assets/svg/dashicons_email.svg'),
                                 40.w.spX,
                                 Text(
                                   'Continue with Email Id',
