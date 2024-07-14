@@ -1,0 +1,104 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        flutter-version: ['2.5.3', '2.8.0', 'latest']
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        working-directory: ['your_flutter_project_directory']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Cache Flutter SDK
+      uses: actions/cache@v2
+      with:
+        path: ~/.pub-cache
+        key: ${{ runner.os }}-pub-cache-${{ matrix.flutter-version }}
+        restore-keys: |
+          ${{ runner.os }}-pub-cache-
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ matrix.flutter-version }}
+
+    - name: Install dependencies
+      run: flutter pub get
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Format code
+      run: dart format --set-exit-if-changed .
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Analyze code
+      run: dart analyze .
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Run lint
+      run: flutter analyze
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Run tests
+      run: flutter test --coverage
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Upload code coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: coverage/lcov.info
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Build APK
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
+      run: flutter build apk --release
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Build iOS
+      if: matrix.os == 'macos-latest'
+      run: flutter build ios --release --no-codesign
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Archive APK
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: apk
+        path: build/app/outputs/flutter-apk/app-release.apk
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Archive iOS build
+      if: matrix.os == 'macos-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: ios
+        path: build/ios/ipa
+      working-directory: ${{ matrix.working-directory }}
+
+    - name: Send email notification
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: ${{ secrets.EMAIL_SERVER }}
+        server_port: ${{ secrets.EMAIL_PORT }}
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: Build ${{ job.status }}: ${{ github.repository }}
+        body: |
+          The build for ${{ github.repository }} on branch ${{ github.ref }} has ${{ job.status }}.
+          Run details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        to: ${{ secrets.EMAIL_RECIPIENT }}
+        from: ${{ secrets.EMAIL_USERNAME }}
