@@ -1,3 +1,5 @@
+[![Build](https://github.com/kenresoft/flutter_hooks/workflows/Build/badge.svg)](https://github.com/kenresoft/astrology_app/actions?query=workflow%3ABuild)
+
 # astrology_app
 
 Astrology App Community
