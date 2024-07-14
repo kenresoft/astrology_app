@@ -62,7 +62,6 @@ jobs:
         path: coverage/lcov.info
 
     - name: Build APK
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
       run: flutter build apk --release
       working-directory: ${{ matrix.working-directory }}
 
@@ -72,7 +71,6 @@ jobs:
       working-directory: ${{ matrix.working-directory }}
 
     - name: Archive APK
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v2
       with:
         name: apk
