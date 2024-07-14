@@ -87,18 +87,3 @@ jobs:
         name: ios
         path: build/ios/ipa
       working-directory: ${{ matrix.working-directory }}
-
-    - name: Send email notification
-      if: always()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: ${{ secrets.EMAIL_SERVER }}
-        server_port: ${{ secrets.EMAIL_PORT }}
-        username: ${{ secrets.EMAIL_USERNAME }}
-        password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: Build ${{ job.status }}: ${{ github.repository }}
-        body: |
-          The build for ${{ github.repository }} on branch ${{ github.ref }} has ${{ job.status }}.
-          Run details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        to: ${{ secrets.EMAIL_RECIPIENT }}
-        from: ${{ secrets.EMAIL_USERNAME }}
