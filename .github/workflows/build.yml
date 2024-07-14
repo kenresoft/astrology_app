@@ -60,7 +60,6 @@ jobs:
       with:
         name: coverage
         path: coverage/lcov.info
-      working-directory: ${{ matrix.working-directory }}
 
     - name: Build APK
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
@@ -78,7 +77,6 @@ jobs:
       with:
         name: apk
         path: build/app/outputs/flutter-apk/app-release.apk
-      working-directory: ${{ matrix.working-directory }}
 
     - name: Archive iOS build
       if: matrix.os == 'macos-latest'
@@ -86,4 +84,3 @@ jobs:
       with:
         name: ios
         path: build/ios/ipa
-      working-directory: ${{ matrix.working-directory }}
