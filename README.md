@@ -1,4 +1,4 @@
-[![Build](https://github.com/kenresoft/flutter_hooks/workflows/Build/badge.svg)](https://github.com/kenresoft/astrology_app/actions?query=workflow%3ABuild)
+[![Build](https://github.com/kenresoft/astrology_app/workflows/Build/badge.svg)](https://github.com/kenresoft/astrology_app/actions/workflows/build.yml?query=workflow%3ABuild)
 
 # astrology_app
 
