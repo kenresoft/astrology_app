@@ -1,8 +1,18 @@
+# Astrology App Community
+
 [![Build](https://github.com/kenresoft/astrology_app/actions/workflows/build.yml/badge.svg)](https://github.com/kenresoft/astrology_app/actions/workflows/build.yml?query=workflow%3ABuild)
 
-# astrology_app
+Astrology App offers a sleek UI for personalized astrological insights and consultations. 
+Note that the current implementation is primarily focused on the user interface, 
+with minimal backend functionality.
 
-Astrology App Community
+## Features
+1. **Daily Horoscope:** View daily horoscopes tailored to each zodiac sign.
+2. **Astro Services:** Connect with astrologers for consultations (UI only).
+3. **Recommended Astrologers:** Browse and view profiles of top astrologers.
+4. **Trending Consultations:** Explore popular consultation categories.
+5. **Business Consultations:** Access UI for business-related astrological advice.
+6. **Planetary Transits:** UI for insights into planetary transits and their impacts.
 
 ## Getting Started
 
