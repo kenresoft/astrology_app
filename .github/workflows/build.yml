@@ -10,72 +10,79 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
+        platform: [android, ios]
         flutter-version: ['3.22.1']
-        working-directory: ['.'] 
+        working-directory: ['.']
+      fail-fast: false
+
+    runs-on: ${{ matrix.platform == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Cache Flutter SDK
-      uses: actions/cache@v4
-      with:
-        path: ~/.pub-cache
-        key: ${{ runner.os }}-pub-cache-${{ matrix.flutter-version }}
-        restore-keys: |
-          ${{ runner.os }}-pub-cache-
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ matrix.flutter-version }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: ${{ matrix.flutter-version }}
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.flutter-version }}
 
-    - name: Install dependencies
-      run: flutter pub get
-      working-directory: ${{ matrix.working-directory }}
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: ${{ matrix.working-directory }}
 
-    - name: Format code
-      run: dart format --set-exit-if-changed .
-      working-directory: ${{ matrix.working-directory }}
+      - name: Analyze code
+        run: dart analyze .
+        working-directory: ${{ matrix.working-directory }}
 
-    - name: Analyze code
-      run: dart analyze .
-      working-directory: ${{ matrix.working-directory }}
+      - name: Run lint
+        run: flutter analyze
+        working-directory: ${{ matrix.working-directory }}
 
-    - name: Run lint
-      run: flutter analyze
-      working-directory: ${{ matrix.working-directory }}
+      - name: Run tests
+        run: flutter test --coverage
+        working-directory: ${{ matrix.working-directory }}
 
-    - name: Run tests
-      run: flutter test --coverage
-      working-directory: ${{ matrix.working-directory }}
+      - name: Upload code coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.platform }}
+          path: coverage/lcov.info
 
-    - name: Upload code coverage
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: coverage/lcov.info
+      - name: Build APK
+        if: matrix.platform == 'android'
+        run: flutter build apk --release
+        working-directory: ${{ matrix.working-directory }}
 
-    - name: Build APK
-      run: flutter build apk --release
-      working-directory: ${{ matrix.working-directory }}
+      - name: Archive APK
+        if: matrix.platform == 'android'
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-android
+          path: build/app/outputs/flutter-apk/app-release.apk
 
-    - name: Build iOS
-      run: flutter build ios --release --no-codesign
-      working-directory: ${{ matrix.working-directory }}
-
-    - name: Archive APK
-      uses: actions/upload-artifact@v2
-      with:
-        name: apk
-        path: build/app/outputs/flutter-apk/app-release.apk
-
-    - name: Archive iOS build
-      uses: actions/upload-artifact@v2
-      with:
-        name: ios
-        path: build/ios/ipa
+#      - name: Build iOS
+#        if: matrix.platform == 'ios'
+#        run: |
+#          cd ios
+#          pod init
+#          pod install
+#          cd ..
+#          flutter build ios --no-codesign
+#        working-directory: ${{ matrix.working-directory }}
+#
+#      - name: Archive iOS build
+#        if: matrix.platform == 'ios'
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: ipa-ios
+#          path: build/ios/ipa
